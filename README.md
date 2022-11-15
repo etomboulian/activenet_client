@@ -7,3 +7,5 @@
 3. create a file called .env in the project root with values (using your provided keys):
     - API_KEY='ABCD12345'
     - API_SECRET='asdf'
+
+_work in progress_
