@@ -9,6 +9,7 @@ load_dotenv()
 # Create an APIClient Object and print the result of a call to /organization
 client = ApiClient('ljsupport12', environ.get('API_KEY'), environ.get('API_SECRET'))
 
-print(client.GetOrganization.all())
+
+print(client.__dict__)
 
 

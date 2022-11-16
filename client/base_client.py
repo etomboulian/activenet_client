@@ -1,6 +1,7 @@
 import requests, time
 from hashlib import sha256
 from .routes import routes
+from .models.base import Root
 
 class BaseClient:
     def __init__(self, org_name, api_key, shared_secret):
@@ -31,7 +32,7 @@ class BaseClient:
     def check_connection(self):
         return self.get('organization')
     
-    def get(self, api_name, options=None):
+    def get(self, api_name, options=None) -> 'Root':
         url, return_cls = self.find_route_info(api_name)
 
         http_headers = {
