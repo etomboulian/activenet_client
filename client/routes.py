@@ -15,7 +15,7 @@ routes = {
         'api_name': 'GetSites',
         'endpoint': 'sites',
         'details': {
-            'return_class': Sites,
+            'return_class': SiteList,
             'paginated': False,
             'sortable': False,
             'parameters': None
@@ -25,7 +25,7 @@ routes = {
         'api_name': 'GetCenters',
         'endpoint': 'centers',
         'details': {
-            'return_class': Centers,
+            'return_class': CenterList,
             'paginated': False,
             'sortable': False,
             'parameters': [
@@ -43,7 +43,7 @@ routes = {
         'api_name': 'GetSkills',
         'endpoint': 'skills',
         'details': {
-            'return_class': Skills,
+            'return_class': SkillList,
             'paginated': False,
             'sortable': False,
             'parameters': None
@@ -53,7 +53,7 @@ routes = {
         'api_name': 'GetSkipDates',
         'endpoint': 'skipdates',
         'details': {
-            'return_class': SkipDates,
+            'return_class': SkipDateList,
             'paginated': True,
             'sortable': True,
             'parameters': [
@@ -74,13 +74,13 @@ routes = {
     'activities': {
         'api_name': 'GetActivities',
         'endpoint': 'activities',
-        'return_class': Activities
+        'return_class': ActivityList
     },
     'seasons': {
         'api_name': 'GetSeasons',
         'endpoint': 'seasons',
         'details': {
-            'return_class': Seasons,
+            'return_class': SeasonList,
             'paginated': False,
             'sortable': False,
         }
