@@ -23,7 +23,7 @@ class BaseClient:
     def find_route_info(self, api_name):
         try:
             url = self.api_base + self.routes[api_name]['endpoint']
-            return_cls = self.routes[api_name]['details']['return_class']
+            return_cls = self.routes[api_name]['return_class']
             return url, return_cls
         except Exception as e:
             raise e
