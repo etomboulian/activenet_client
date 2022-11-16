@@ -59,14 +59,12 @@ routes = {
         'endpoint': 'skipdates',
         'return_class': SkipDateList,
         'paginated': True,
-        'parameters': [
+        'parameters':
             {
-                'facility_id': {
-                    'type': int,
-                    'required': True
-                }
+                'required': [('facility_id', 'int')],
+                'optional': None
             }
-        ],
+        ,
         'sortable': True,
         'sort_options': [
             {'start_date': ['ASC', 'DESC'] },

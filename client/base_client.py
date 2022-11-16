@@ -31,8 +31,12 @@ class BaseClient:
 
     def check_connection(self):
         return self.get('organization')
+
+    def validate_required_params(self, route: str, actual_params: dict):
+        required_params = {field:field_type for (field, field_type) in self.routes[route]['parameters']['required']}
+        return set(required_params.keys()).issubset(set(actual_params.keys()))
     
-    def get(self, api_name, options=None) -> 'Root':
+    def get(self, api_name, options=None, sort=None) -> 'Root':
         url, return_cls = self.find_route_info(api_name)
 
         http_headers = {
@@ -46,13 +50,18 @@ class BaseClient:
             for k, v in options.items():
                 params[k] = v
 
+        if sort:
+            # TODO implement sort options
+            pass
+
         params['api_key'] = self.api_key
         params['sig'] = self.generate_signature()
         
         resp = self.session.get(url, headers=http_headers, params=params)
-        print(resp.url)
+        
+        print(resp.url)     # Remove this later
+        
         if resp.status_code == 200:
-            json_str = resp.json()
-            return return_cls.from_dict(json_str)
+            return return_cls.from_dict(resp.json())
         else:
             raise Exception(f'{resp.status_code}, {resp.text}')
