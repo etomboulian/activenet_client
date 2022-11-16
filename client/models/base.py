@@ -15,14 +15,14 @@ class PageInfo:
 class Headers:
     response_code: str
     response_message: str
-    page_info: Optional[PageInfo] = None
+    page_info: Optional[PageInfo]
 
     @classmethod
     def from_dict(cls, d: dict) -> 'Headers':
         if type(d).__name__ == 'dict':
             _response_code = d.get('response_code')
             _response_message = d.get('response_message')
-            _page_info = d.get('page_info')
+            _page_info = PageInfo(**d.get('page_info')) if d.get('page_info') else None
             return cls(
                 response_code=_response_code, 
                 response_message=_response_message,

@@ -1,4 +1,4 @@
-import requests, time
+import requests, time, json
 from hashlib import sha256
 from .routes import routes
 from .models.base import Root
@@ -11,7 +11,6 @@ class BaseClient:
         self.api_base = f"https://api.amp.active.com/anet-systemapi-sec/{org_name}/api/v1/"
         self.routes = routes
         self.session = requests.Session()
-        # self.org = 1 # Create an organization object here to hold org info
 
     # Generates the value for the sig parameter from the api_key and shared_secret
     def generate_signature(self) -> str: 
@@ -36,7 +35,7 @@ class BaseClient:
         required_params = {field:field_type for (field, field_type) in self.routes[route]['parameters']['required']}
         return set(required_params.keys()).issubset(set(actual_params.keys()))
     
-    def get(self, api_name, options=None, sort=None) -> 'Root':
+    def get(self, api_name, options=None, sort=None, page_info=None) -> 'Root':
         url, return_cls = self.find_route_info(api_name)
 
         http_headers = {
@@ -54,12 +53,19 @@ class BaseClient:
             # TODO implement sort options
             pass
 
+        if page_info:
+            http_headers['page_info'] = {}
+            for header, value in page_info.items():
+                http_headers['page_info'][header] = str(value)
+
+            http_headers['page_info'] = json.dumps(http_headers['page_info'])
+
         params['api_key'] = self.api_key
         params['sig'] = self.generate_signature()
         
         resp = self.session.get(url, headers=http_headers, params=params)
         
-        print(resp.url)     # Remove this later
+        #print(resp.url)     # Remove this later
         
         if resp.status_code == 200:
             return return_cls.from_dict(resp.json())
