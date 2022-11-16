@@ -56,3 +56,10 @@ class ResultItem:
 
     def all(self) -> 'Root':
         return self.api_client.get(self.api_name).body
+
+    # Should return an object that we can call .next() on until it returns null
+    def first(self) -> 'Root':
+        return self.api_client.get(self.api_name).body
+
+    def next(self) -> 'Root':
+        return self.api_client.get(self.api_name).body

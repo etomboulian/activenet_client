@@ -1,4 +1,12 @@
-from .models import *
+from .models import (
+    OrganizationList,
+    SiteList,
+    CenterList,
+    SeasonList,
+    SkillList,
+    SkipDateList,
+    ActivityList
+)
 
 routes = {
     'organization': {
@@ -29,6 +37,7 @@ routes = {
                 {
                     'show_on_member_app': {
                         'type': str,
+                        'valid_options': ['Y', 'N'],
                         'required': False,
                         'description': "Filter for centers by their 'Show On the ACTIVE Net Captivate App' flag: Y or N."
                     },
@@ -68,9 +77,64 @@ routes = {
     'activities': {
         'api_name': 'GetActivities',
         'endpoint': 'activities',
-        'return_class': ActivityList
+        'return_class': ActivityList,
+        'paginated': True,
+        'parameters': {
+            'activity_name': {
+                'type': str,
+                'required': False
+            },
+
+            'activity_number': {
+                'type': int,
+                'required': False
+            },
+
+            'activity_type_id': {
+                'type': int,
+                'required': False
+            },
+
+            'parent_season_id': {
+                'type': int,
+                'required': False
+            },
+
+            'activity_status_id': {
+                'type': int,
+                'required': False
+            },
+
+            'category_id': {
+                'type': int,
+                'required': False
+            },
+
+            'other_category_id': {
+                'type': int,
+                'required': False
+            },
+
+            'site_ids': {
+                'type': str,
+                'required': False
+            },
+
+            'center_ids': {
+                'type': str,
+                'required': False
+            },
+
+            
+
+
+        },
+        'sortable': True,
+        'sort_options': [
+
+        ]
     },
-    
+
     'seasons': {
         'api_name': 'GetSeasons',
         'endpoint': 'seasons',
@@ -79,5 +143,3 @@ routes = {
         'sortable': False,
     }
 }
-
-
