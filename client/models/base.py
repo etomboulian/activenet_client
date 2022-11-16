@@ -10,6 +10,7 @@ class PageInfo:
     total_records: int
     total_records_per_page: int
 
+
 @dataclass
 class Headers:
     response_code: str
@@ -31,6 +32,7 @@ class Headers:
             raise Exception("method from_dict expects a dict but got a list instead")
         else:
             return d
+            
             
 @dataclass
 class Body:

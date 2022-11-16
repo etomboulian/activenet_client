@@ -42,5 +42,5 @@ class Season(Body, BaseSeason):
 
 
 @dataclass
-class Seasons(Root):
+class SeasonList(Root):
     body_type = Season

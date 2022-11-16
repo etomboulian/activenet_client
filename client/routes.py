@@ -5,7 +5,7 @@ routes = {
         'api_name': 'GetOrganizations',
         'endpoint': 'organization',
         'details': {
-            'return_class': Organization,
+            'return_class': OrganizationList,
             'paginated': False,
             'sortable': False,
             'parameters': None

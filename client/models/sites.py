@@ -18,6 +18,6 @@ class Site(Body):
 
 
 @dataclass
-class Sites(Root):
+class SiteList(Root):
     body_type = Site
     body: List[Site]

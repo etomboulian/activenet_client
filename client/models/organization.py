@@ -4,7 +4,7 @@ from .base import Body, Root
 
 
 @dataclass
-class OrganizationDetails(Body):
+class Organization(Body):
     organization_id: int
     name: str
     time_zone: str
@@ -15,6 +15,6 @@ class OrganizationDetails(Body):
 
 
 @dataclass
-class Organization(Root):
-    body_type = OrganizationDetails
-    body: List[OrganizationDetails]
+class OrganizationList(Root):
+    body_type = Organization
+    body: List[Organization]

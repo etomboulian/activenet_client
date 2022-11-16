@@ -17,6 +17,6 @@ class Skill(Body):
     available_for: str
 
 @dataclass
-class Skills(Root):
+class SkillList(Root):
     body_type = Skill
     body: List[Skill]

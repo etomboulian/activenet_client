@@ -8,7 +8,7 @@ class Activity(Body):
     activity_name: str
     activity_number: str
     activity_id: int
-    modified_date_time: dataclass
+    modified_date_time: datetime
     activity_type_id: int
     activity_type: str
     parent_season_id: Optional[int]
@@ -44,5 +44,5 @@ class Activity(Body):
     
 
 @dataclass
-class Activities(Root):
+class ActivityList(Root):
     body_type = Activity
