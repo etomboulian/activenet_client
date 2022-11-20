@@ -8,43 +8,32 @@ class ApiClient(BaseClient):
     def __init__(self, org_name, api_key, shared_secret):
         super().__init__(org_name=org_name, api_key=api_key, shared_secret=shared_secret)
 
-
     def GetOrganization(self) -> 'Organization':
         """GetOrganizations API 
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetOrganization        
 
         Params: None
-
-        Returns:
-            an object representing the organization
+        Returns: Organization - an object representing the organization
         """
         return self.get('organization').body[0]
-
     
     def GetSites(self) -> List[Site]:
         """GetSites API 
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSites
-
+        
         Params: None
-
-        Returns:
-            a list of site records
+        Returns: List[Site] - a list of site records
         """
         return self.get('sites').body
-
     
     def GetCenters(self, options: dict = None) -> List[Center]:
         """GetCenters API 
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetCenters
 
-        Params:
-            show_on_member_app: ("Y" | "N"), optional 
-                Filter for centers by their 'Show On the ACTIVE Net Captivate App' flag
-        Returns:
-            a list of centers
+        Params: show_on_member_app: ("Y" | "N"), optional - Filter for centers by their 'Show On the ACTIVE Net Captivate App' flag
+        Returns: List[Center] - a list of centers
         """
         return self.get('centers').body
-
     
     def GetSkills(self) -> List[Skill]:
         """GetSkills API 
@@ -52,27 +41,21 @@ class ApiClient(BaseClient):
         
         Params: None
 
-        Returns:
-            a list of the available skill records
+        Returns: List[Skill] - a list of the available skill records
         """
         return self.get('skills').body
-
     
-    def GetSkipDates(self, facility_id: int, 
-        params: dict = {}, 
+    def GetSkipDates(self, facility_id: int, params: dict = {}, 
         sort_by: Tuple[str, str] = None) -> List[SkipDate]:
-        """GetSkipDates API (Paginated)
+        """GetSkipDates API
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSkipDates
         
-        Params:
-            facility_id: int, required 
-                The facility id of the facility.
+        - Paginated
+        - Sortable
 
-            sort: Tuple[str, str], optional
-                The primary sort option for results, example - ('start_date', 'ASC')
-
-        Returns:
-            a list of skip date records
+        param: facility_id: int, required - The facility id of the facility.
+        sort: Tuple[str, str], optional - The primary sort option for results, example - ('start_date', 'ASC')
+        returns: List[SkipDates] - A list of skip dates
         """
         route = 'skip_dates'
         params['facility_id'] = facility_id
@@ -80,31 +63,26 @@ class ApiClient(BaseClient):
         if not self.validate_required_params(route, params):
             raise Exception('Not all required parameters were included')
         
-        first_page = self.get(route, options=params, sort=sort_by)
-        return PaginatedResult(self, route, first_page, params=params, sort_by=sort_by)
-
+        first_page = self.get(route, url_params=params, sort=sort_by)
+        return PaginatedResult(self, route, first_page, params=params, sort=sort_by)
     
     def GetSeasons(self) -> List[Season]:
         """GetSeasons API 
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSeasons
 
         Params: None
-
-        Returns:
-            a list of season records
+        Returns: List[Season] - a list of season records
         """
         return self.get('seasons').body
-
     
     def GetActivities(self, options: dict = None):
         """GetActivities API
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetActivities
 
-        Returns:
-            a list of activity records
+        Returns: List[Activity] - a list of activity records
         """
         route = 'activities'
-        first_page = self.get('activities', options=options)
+        first_page = self.get('activities', url_params=options)
         return PaginatedResult(self, route, first_page, params=options)
 
 
@@ -134,7 +112,7 @@ class PaginatedResult:
                 "total_records_per_page": self.records_per_page,
                 "page_number": self.current_page_number
             }
-            next_page = self.api_client.get(self.api_name, options=self.params, page_info=page_info, sort=self.sort)
+            next_page = self.api_client.get(self.api_name, url_params=self.params, page_info=page_info, sort=self.sort)
             return PaginatedResult(self.api_client, self.api_name, next_page, params=self.params, sort=self.sort)
         else:
             return None

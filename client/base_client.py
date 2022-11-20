@@ -34,38 +34,41 @@ class BaseClient:
     def validate_required_params(self, route: str, actual_params: dict):
         required_params = {field:field_type for (field, field_type) in self.routes[route]['parameters']['required']}
         return set(required_params.keys()).issubset(set(actual_params.keys()))
-    
-    def get(self, api_name, options=None, sort=None, page_info=None) -> 'Root':
-        url, return_cls = self.find_route_info(api_name)
 
+    @staticmethod
+    def set_page_info_header(page_info: dict) -> str:
+        page_info_header = {}
+        for header, value in page_info.items():
+            page_info_header[header] = str(value)
+
+        return json.dumps(page_info_header)
+
+    @staticmethod
+    def set_url_params(existing_params: dict, new_params: dict):
+        existing_params.update(new_params)
+    
+    def get(self, api_name, url_params=None, sort=None, page_info=None) -> 'Root':
+        url, return_cls = self.find_route_info(api_name)
         http_headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
             }
-
         params = dict()
         
-        if options:
-            for k, v in options.items():
-                params[k] = v
+        if url_params:
+            self.set_url_params(params, url_params)
 
         if sort:
             # TODO implement sort options
             pass
 
         if page_info:
-            http_headers['page_info'] = {}
-            for header, value in page_info.items():
-                http_headers['page_info'][header] = str(value)
-
-            http_headers['page_info'] = json.dumps(http_headers['page_info'])
+            http_headers['page_info'] = self.set_page_info_header(page_info)
 
         params['api_key'] = self.api_key
         params['sig'] = self.generate_signature()
         
         resp = self.session.get(url, headers=http_headers, params=params)
-        
-        #print(resp.url)     # Remove this later
         
         if resp.status_code == 200:
             return return_cls.from_dict(resp.json())
