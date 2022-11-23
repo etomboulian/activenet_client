@@ -12,6 +12,9 @@ class BaseClient:
         self.routes = routes
         self.session = requests.Session()
 
+    def __del__(self):
+        self.session.close()
+
     # Generates the value for the sig parameter from the api_key and shared_secret
     def generate_signature(self) -> str: 
         seconds = int(time.time())

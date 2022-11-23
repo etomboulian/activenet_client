@@ -50,8 +50,7 @@ class ApiClient(BaseClient):
         """GetSkipDates API
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSkipDates
         
-        - Paginated
-        - Sortable
+        Paginated, Sortable
 
         param: facility_id: int, required - The facility id of the facility.
         sort: Tuple[str, str], optional - The primary sort option for results, example - ('start_date', 'ASC')
@@ -78,6 +77,8 @@ class ApiClient(BaseClient):
     def GetActivities(self, options: dict = None):
         """GetActivities API
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetActivities
+
+        Paginated, Sortable
 
         Returns: List[Activity] - a list of activity records
         """
