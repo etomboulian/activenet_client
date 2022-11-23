@@ -1,7 +1,7 @@
 from .models import (
-    OrganizationList,
-    SiteList,
-    CenterList,
+    OrganizationResponse,
+    SitesResponse,
+    CentersResponse,
     SeasonList,
     SkillList,
     SkipDateList,
@@ -12,7 +12,7 @@ routes = {
     'organization': {
         'api_name': 'GetOrganizations',
         'endpoint': 'organization',
-        'return_class': OrganizationList,
+        'return_class': OrganizationResponse,
         'paginated': False,
         'sortable': False,
         'parameters': None
@@ -21,7 +21,7 @@ routes = {
     'sites': {
         'api_name': 'GetSites',
         'endpoint': 'sites',
-        'return_class': SiteList,
+        'return_class': SitesResponse,
         'paginated': False,
         'sortable': False,
         'parameters': None
@@ -30,7 +30,7 @@ routes = {
     'centers': {
         'api_name': 'GetCenters',
         'endpoint': 'centers',
-        'return_class': CenterList,
+        'return_class': CentersResponse,
         'paginated': False,
         'sortable': False,
         'parameters': [

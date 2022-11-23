@@ -63,7 +63,7 @@ class Center(Body):
         self.Saturday_hours_of_operation = HoursOfOperation(**self.Saturday_hours_of_operation)
 
 @dataclass
-class CenterList(Root):
+class CentersResponse(Root):
     body_type = Center
 
 

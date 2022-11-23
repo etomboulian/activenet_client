@@ -15,6 +15,6 @@ class Organization(Body):
 
 
 @dataclass
-class OrganizationList(Root):
+class OrganizationResponse(Root):
     body_type = Organization
     body: List[Organization]

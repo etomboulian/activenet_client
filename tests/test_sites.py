@@ -1,16 +1,10 @@
-import unittest, os
-from dotenv import load_dotenv
-from client import ApiClient
+from . import ClientTestCase
+from client.models import Site, SitesResponse
 
-from client.models import Site, SiteList
-
-load_dotenv()
-
-class TestSites(unittest.TestCase):
+class TestSites(ClientTestCase):
     def setUp(self) -> None:
-        self.client = ApiClient(os.environ.get('ORG_NAME'), os.environ.get('API_KEY'), os.environ.get('API_SECRET'))
+        super().setUp()
         self.sites_data = self.client.get('sites')
-        return super().setUp()
 
     def test_sites_api_success(self):
         response_code = self.sites_data.headers.response_code
@@ -18,7 +12,7 @@ class TestSites(unittest.TestCase):
 
     def test_sites_api_return_type_data(self):
         data = self.sites_data
-        self.assertIsInstance(data, SiteList)
+        self.assertIsInstance(data, SitesResponse)
 
     def test_sites_api_return_type_list(self):
         data = self.sites_data.body
