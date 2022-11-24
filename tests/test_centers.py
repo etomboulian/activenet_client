@@ -5,7 +5,7 @@ from client.models import Center, CentersResponse
 class TestCenters(ClientTestCase):
     def setUp(self) -> None:
         super().setUp()
-        self.centers_data = self.client.get('centers')
+        self.centers_data = self.client.GetCenters()
 
     def test_centers_api_success(self):
         response_code = self.centers_data.headers.response_code

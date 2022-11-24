@@ -1,21 +1,35 @@
-import requests, time, json
+import requests, time, json, os
 from hashlib import sha256
 from .routes import routes
 from .models.base import Root
+from typing import Tuple
+
+USA_API_BASE = "https://api.amp.active.com/anet-systemapi-sec/"
+CAN_API_BASE = "https://api.amp.active.com/anet-systemapi-sec/"
+
+REQUESTS_PER_SECOND = 0.5
 
 class BaseClient:
-    def __init__(self, org_name, api_key, shared_secret):
+    last_request = time.time()
+    def __init__(self, org_name, country, api_key, shared_secret):
+        if country == 'USA':
+            API_BASE = USA_API_BASE
+        elif country == 'CAN':
+            API_BASE = CAN_API_BASE
+        else:
+            raise Exception(f'Unable to determine the url for the country: {country}')
+
         self.org_name = org_name
         self.api_key = api_key
         self.shared_secret = shared_secret
-        self.api_base = f"https://api.amp.active.com/anet-systemapi-sec/{org_name}/api/v1/"
+        self.api_base =  f"{API_BASE}/{org_name}/api/v1/"
         self.routes = routes
         self.session = requests.Session()
         
     def __del__(self):
         self.session.close()
 
-    # Generates the value for the sig parameter from the api_key and shared_secret
+    # Generates the signature from the api_key and shared_secret
     def generate_signature(self) -> str: 
         seconds = int(time.time())
         message = self.api_key + self.shared_secret + str(seconds)
@@ -23,7 +37,8 @@ class BaseClient:
         signature = sha256(message_bytes).hexdigest()
         return signature
 
-    def find_route_info(self, api_name):
+    # Gets the url for the selected api endpoint and its return class
+    def find_route_info(self, api_name) -> Tuple[str, Root]:
         try:
             url = self.api_base + self.routes[api_name]['endpoint']
             return_cls = self.routes[api_name]['return_class']
@@ -31,9 +46,11 @@ class BaseClient:
         except Exception as e:
             raise e
 
-    def check_connection(self):
-        return self.get('organization')
+    # Checks the connection status with the server
+    def check_connection(self) -> bool:
+        return self.get('organization').headers.response_code == '0000'
 
+    # Checks to see if the given filter params are valid optional params for the api endpoint
     def validate_route_params(self, route: str, actual_params: dict) -> bool:
         optional_params = {
             field:details['type'] for field, details 
@@ -42,39 +59,39 @@ class BaseClient:
         is_valid_params = set(optional_params.keys()).issubset(set(actual_params.keys()))
         return is_valid_params
 
+    # Check to see if the given sort option is valid for the api endpoint
     def validate_sort_params(self, route: str, sort_params: dict) -> bool:
         pass
 
-    def set_sort_header_params(headers: dict, sort_params: dict):
-        headers.update(sort_params)
-
+    # Generates the page info header for pagination and sorting
     @staticmethod
     def set_page_info_header(page_info: dict) -> str:
-        page_info_header = {}
-        for header, value in page_info.items():
-            page_info_header[header] = str(value)
+        page_info_header = {header:str(value) for (header, value) in page_info.items()}
         return json.dumps(page_info_header)
 
-    @staticmethod
-    def set_url_params(existing_params: dict, new_params: dict):
-        existing_params.update(new_params)
-
-    @staticmethod
-    def check_response(result, return_cls):
+    # Check the response to ensure that we are getting a success response
+    @classmethod
+    def check_response(cls, return_cls: Root, result: str):
         # Throw exception if we get anything other than the expected success http status code (200)
         if result.status_code == 200:
-            result = return_cls.from_dict(result.json())
-            # 0000 = Success, 0001 = No Results Found
+            result = cls.deserialize_response(return_cls, result)
+            # 0000 = Success 
             if result.headers.response_code == '0000':     
                 return result
+            # 0001 = No Results Found
             elif result.headers.response_code == '0001':
                 return None
             else:
                 raise Exception(result.headers.__dict__) 
         else:
-            raise Exception(result.json())
+            raise Exception(result.__dict__)
 
-    def get(self, api_name, filters=None, sort=None, page_info=None) -> 'Root':
+    @classmethod
+    def deserialize_response(cls, return_cls, data):
+        return return_cls.from_dict(data.json())
+
+    # Gets data from the endpoint and returns a constructed model class for the response
+    def get(self, api_name, filters: dict=None, sort: dict=None, page_info=None) -> 'Root':
         url, return_cls = self.find_route_info(api_name)
         http_headers = {
             'Accept': 'application/json',
@@ -85,14 +102,14 @@ class BaseClient:
         if filters:
             try:
                 if self.validate_route_params(api_name, filters):
-                    self.set_url_params(params, filters)                
+                    params.update(filters)                
             except Exception as e:
                 raise e
 
         if sort:
             try:
                 if self.validate_sort_params(api_name, sort):
-                    self.set_sort_header_params(http_headers, sort)
+                    http_headers.update(sort)
             except Exception as e:
                 raise e
 
@@ -101,11 +118,18 @@ class BaseClient:
 
         params['api_key'] = self.api_key
         params['sig'] = self.generate_signature()
+
+        # Pause if requests are being made too quickly
+        while ((diff := (time.time() - self.last_request)) < REQUESTS_PER_SECOND):
+            time.sleep(abs(REQUESTS_PER_SECOND - diff))
         
         resp = self.session.get(url, headers=http_headers, params=params)
+        self.last_request = time.time()
+        
         try:
-            result = self.check_response(resp, return_cls)
+            result = self.check_response(return_cls, resp)
         except Exception as e:
             raise e
 
         return result
+        
