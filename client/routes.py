@@ -61,8 +61,11 @@ routes = {
         'paginated': True,
         'parameters':
             {
-                'required': [('facility_id', 'int')],
-                'optional': None
+                'facility_id': {
+                    'type': int,
+                    'required': True
+                }
+                
             }
         ,
         'sortable': True,

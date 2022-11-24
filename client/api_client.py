@@ -45,8 +45,7 @@ class ApiClient(BaseClient):
         """
         return self.get('skills').body
     
-    def GetSkipDates(self, facility_id: int, params: dict = {}, 
-        sort_by: Tuple[str, str] = None) -> List[SkipDate]:
+    def GetSkipDates(self, facility_id: int, filters: dict = {}, sort_by: Tuple[str, str] = None) -> List[SkipDate]:
         """GetSkipDates API
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSkipDates
         
@@ -57,13 +56,11 @@ class ApiClient(BaseClient):
         returns: List[SkipDates] - A list of skip dates
         """
         route = 'skip_dates'
-        params['facility_id'] = facility_id
-
-        if not self.validate_required_params(route, params):
-            raise Exception('Not all required parameters were included')
+        filters['facility_id'] = facility_id
         
-        first_page = self.get(route, url_params=params, sort=sort_by)
-        return PaginatedResult(self, route, first_page, params=params, sort=sort_by)
+        first_page = self.get(route, filters=filters, sort=sort_by)
+        
+        return PaginatedResult(self, route, first_page, filters=filters, sort=sort_by) if first_page else first_page
     
     def GetSeasons(self) -> List[Season]:
         """GetSeasons API 
@@ -83,15 +80,15 @@ class ApiClient(BaseClient):
         Returns: List[Activity] - a list of activity records
         """
         route = 'activities'
-        first_page = self.get('activities', url_params=options)
-        return PaginatedResult(self, route, first_page, params=options)
+        first_page = self.get('activities', filters=options)
+        return PaginatedResult(self, route, first_page, filters=options) if first_page else first_page
 
 
 class PaginatedResult:
-    def __init__(self, api_client: ApiClient, route, first_page: Root, params: dict, sort: dict = None):
+    def __init__(self, api_client: ApiClient, route, first_page: Root, filters: dict, sort: dict = None):
         self.api_client = api_client
         self.api_name = route
-        self.params = params
+        self.filtr = filters
         self.sort = sort
         self._data = first_page.body
         self.current_page_number = first_page.headers.page_info.page_number
@@ -114,7 +111,7 @@ class PaginatedResult:
                 "page_number": self.current_page_number
             }
             next_page = self.api_client.get(self.api_name, url_params=self.params, page_info=page_info, sort=self.sort)
-            return PaginatedResult(self.api_client, self.api_name, next_page, params=self.params, sort=self.sort)
+            return PaginatedResult(self.api_client, self.api_name, next_page, filters=self.filters, sort=self.sort)
         else:
             return None
 

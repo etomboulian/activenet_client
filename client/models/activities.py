@@ -3,6 +3,7 @@ from typing import List, Optional
 from datetime import datetime, date
 from .base import Body, Root
 
+from . import DATETIME_FORMAT_STR, DATE_FORMAT_STR
 
 @dataclass
 class Activity(Body):
@@ -44,8 +45,10 @@ class Activity(Body):
     age_max_week: int
 
     def __post_init__(self):
-        pass
-    
+        self.modified_date_time = datetime.strptime(self.modified_date_time, DATETIME_FORMAT_STR) if self.modified_date_time else self.modified_date_time
+        self.default_beginning_date = datetime.strptime(self.default_beginning_date, DATE_FORMAT_STR) if self.default_beginning_date else self.default_beginning_date
+        self.default_ending_date = datetime.strptime(self.default_ending_date, DATE_FORMAT_STR) if self.default_ending_date else self.default_ending_date
+
 
 @dataclass
 class ActivityList(Root):
