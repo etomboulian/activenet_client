@@ -10,6 +10,6 @@ load_dotenv()
 client = ApiClient('ljsupport12', environ.get('API_KEY'), environ.get('API_SECRET'))
 
 
-print(client.GetSkipDates(10))
+print(client.GetActivities()[0])
 
 

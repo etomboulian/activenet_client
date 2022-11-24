@@ -117,4 +117,7 @@ class PaginatedResult:
             return PaginatedResult(self.api_client, self.api_name, next_page, params=self.params, sort=self.sort)
         else:
             return None
+
+    def __getitem__(self, key):
+        return self._data[key]
     
