@@ -3,6 +3,8 @@ from dataclasses import dataclass
 from typing import List, Optional
 from datetime import date, time, datetime
 
+from . import DATE_FORMAT_STR, TIME_FORMAT_STR
+
 
 @dataclass
 class SkipDate(Body):
@@ -14,10 +16,11 @@ class SkipDate(Body):
     time_to: Optional[time]
 
     def __post_init__(self):
-        self.date_from = datetime.strptime(self.date_from, '%Y-%m-%d')
-        self.date_to = datetime.strptime(self.date_to, '%Y-%m-%d')
-        self.time_from = datetime.strptime(self.time_from, '%H:%M:%S').time() if self.time_from else self.time_from
-        self.time_to = datetime.strptime(self.time_to, '%H:%M:%S').time() if self.time_to else self.time_to
+        self.date_from = datetime.strptime(self.date_from, DATE_FORMAT_STR) if self.date_from else self.date_from
+        self.date_to = datetime.strptime(self.date_to, DATE_FORMAT_STR) if self.date_to else self.date_to
+        self.time_from = datetime.strptime(self.time_from, TIME_FORMAT_STR).time() if self.time_from else self.time_from
+        self.time_to = datetime.strptime(self.time_to, TIME_FORMAT_STR).time() if self.time_to else self.time_to
+
 
 @dataclass
 class SkipDateList(Root):

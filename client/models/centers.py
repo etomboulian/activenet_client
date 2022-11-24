@@ -3,14 +3,18 @@ from typing import List, Optional
 from datetime import time, datetime
 from .base import Root, Body
 
+from . import TIME_FORMAT_STR
+
+
 @dataclass
 class DefaultHoursOfOperation:
     default_opens: Optional[time]
     default_closes: Optional[time]
 
     def __post_init__(self):
-        self.default_opens = datetime.strptime(self.default_opens, '%H:%M:%S').time()
-        self.default_closes = datetime.strptime(self.default_closes, '%H:%M:%S').time()
+        self.default_opens = datetime.strptime(self.default_opens, TIME_FORMAT_STR).time() if self.default_opens else self.default_opens
+        self.default_closes = datetime.strptime(self.default_closes, TIME_FORMAT_STR).time() if self.default_closes else self.default_closes
+
 
 @dataclass
 class HoursOfOperation:
@@ -19,8 +23,9 @@ class HoursOfOperation:
     closes: Optional[time]
 
     def __post_init__(self):
-        self.opens = datetime.strptime(self.opens, '%H:%M:%S').time() if self.opens else None
-        self.closes = datetime.strptime(self.closes, '%H:%M:%S').time() if self.closes else None
+        self.opens = datetime.strptime(self.opens, TIME_FORMAT_STR).time() if self.opens else None
+        self.closes = datetime.strptime(self.closes, TIME_FORMAT_STR).time() if self.closes else None
+
 
 @dataclass
 class Center(Body):
@@ -62,8 +67,10 @@ class Center(Body):
         self.Friday_hours_of_operation = HoursOfOperation(**self.Friday_hours_of_operation)
         self.Saturday_hours_of_operation = HoursOfOperation(**self.Saturday_hours_of_operation)
 
+
 @dataclass
 class CentersResponse(Root):
     body_type = Center
+    body: List[Center]
 
 

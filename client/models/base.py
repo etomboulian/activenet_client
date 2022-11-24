@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, List, Any, Optional
 
+
 @dataclass
 class PageInfo:
     order_by: str
@@ -44,6 +45,7 @@ class Body:
             raise Exception("method from_dict expects a dict but got a list instead")
         else:
             return d
+
 
 @dataclass
 class Root:

@@ -3,6 +3,7 @@ from typing import List, Optional
 from datetime import datetime, date
 from .base import Body, Root
 
+
 @dataclass
 class Activity(Body):
     activity_name: str
@@ -41,8 +42,12 @@ class Activity(Body):
     age_max_year: int
     age_max_month: int
     age_max_week: int
+
+    def __post_init__(self):
+        pass
     
 
 @dataclass
 class ActivityList(Root):
     body_type = Activity
+    body: List[Activity]
