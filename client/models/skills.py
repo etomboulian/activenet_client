@@ -12,6 +12,6 @@ class Skill(Body):
 
 
 @dataclass
-class SkillList(Root):
+class SkillsResponse(Root):
     body_type = Skill
     body: List[Skill]

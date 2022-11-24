@@ -23,6 +23,6 @@ class SkipDate(Body):
 
 
 @dataclass
-class SkipDateList(Root):
+class SkipDatesResponse(Root):
     body_type = SkipDate
     body: List[SkipDate]

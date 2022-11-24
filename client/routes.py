@@ -2,10 +2,10 @@ from .models import (
     OrganizationResponse,
     SitesResponse,
     CentersResponse,
-    SeasonList,
-    SkillList,
-    SkipDateList,
-    ActivityList
+    SeasonsResponse,
+    SkillsResponse,
+    SkipDatesResponse,
+    ActivitiesResponse
 )
 
 routes = {
@@ -33,12 +33,11 @@ routes = {
         'return_class': CentersResponse,
         'paginated': False,
         'sortable': False,
-        'parameters': [
+        'optional_parameters': [
                 {
                     'show_on_member_app': {
                         'type': str,
                         'valid_options': ['Y', 'N'],
-                        'required': False,
                         'description': "Filter for centers by their 'Show On the ACTIVE Net Captivate App' flag: Y or N."
                     },
                 }
@@ -48,7 +47,7 @@ routes = {
     'skills': {
         'api_name': 'GetSkills',
         'endpoint': 'skills',
-        'return_class': SkillList,
+        'return_class': SkillsResponse,
         'paginated': False,
         'sortable': False,
         'parameters': None
@@ -57,78 +56,40 @@ routes = {
     'skip_dates': {
         'api_name': 'GetSkipDates',
         'endpoint': 'skipdates',
-        'return_class': SkipDateList,
+        'return_class': SkipDatesResponse,
         'paginated': True,
-        'parameters':
-            {
-                'facility_id': {
-                    'type': int,
-                    'required': True
-                }
-                
-            }
-        ,
+        'required_parameters':{
+            'facility_id': {
+                'type': int,
+            }        
+        },
+        'optional_parameters': {
+
+        },
         'sortable': True,
-        'sort_options': [
-            {'start_date': ['ASC', 'DESC'] },
-            {'start_time': ['ASC', 'DESC'] }
-        ]
+        'sort_options': {
+            'start_date': ['ASC', 'DESC'],
+            'start_time': ['ASC', 'DESC'] 
+        }
     },
 
     'activities': {
         'api_name': 'GetActivities',
         'endpoint': 'activities',
-        'return_class': ActivityList,
+        'return_class': ActivitiesResponse,
         'paginated': True,
-        'parameters': {
-            'activity_name': {
-                'type': str,
-                'required': False
-            },
-
-            'activity_number': {
-                'type': int,
-                'required': False
-            },
-
-            'activity_type_id': {
-                'type': int,
-                'required': False
-            },
-
-            'parent_season_id': {
-                'type': int,
-                'required': False
-            },
-
-            'activity_status_id': {
-                'type': int,
-                'required': False
-            },
-
-            'category_id': {
-                'type': int,
-                'required': False
-            },
-
-            'other_category_id': {
-                'type': int,
-                'required': False
-            },
-
-            'site_ids': {
-                'type': str,
-                'required': False
-            },
-
-            'center_ids': {
-                'type': str,
-                'required': False
-            },
-
-            
-
-
+        'required_parameters': {
+        },
+        'optional_parameters': {
+            'activity_name': {'type': str},
+            'activity_number': {'type': int},
+            'activity_type_id': {'type': int},
+            'parent_season_id': {'type': int},
+            'activity_status_id': {'type': int},
+            'category_id': {'type': int},
+            'other_category_id': {'type': int},
+            'site_ids': {'type': str},
+            'center_ids': {'type': str},
         },
         'sortable': True,
         'sort_options': [
@@ -139,7 +100,7 @@ routes = {
     'seasons': {
         'api_name': 'GetSeasons',
         'endpoint': 'seasons',
-        'return_class': SeasonList,
+        'return_class': SeasonsResponse,
         'paginated': False,
         'sortable': False,
     }

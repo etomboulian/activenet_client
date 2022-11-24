@@ -53,6 +53,6 @@ class Season(Body, BaseSeason):
 
 
 @dataclass
-class SeasonList(Root):
+class SeasonsResponse(Root):
     body_type = Season
     body: List[Season]

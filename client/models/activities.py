@@ -51,6 +51,6 @@ class Activity(Body):
 
 
 @dataclass
-class ActivityList(Root):
+class ActivitiesResponse(Root):
     body_type = Activity
     body: List[Activity]

@@ -35,11 +35,11 @@ class BaseClient:
         return self.get('organization')
 
     def validate_route_params(self, route: str, actual_params: dict) -> bool:
-        required_params = {
+        optional_params = {
             field:details['type'] for field, details 
-            in self.routes[route]['parameters'].items()
+            in self.routes[route]['optional_parameters'].items()
         }
-        is_valid_params = set(required_params.keys()).issubset(set(actual_params.keys()))
+        is_valid_params = set(optional_params.keys()).issubset(set(actual_params.keys()))
         return is_valid_params
 
     def validate_sort_params(self, route: str, sort_params: dict) -> bool:
@@ -53,7 +53,6 @@ class BaseClient:
         page_info_header = {}
         for header, value in page_info.items():
             page_info_header[header] = str(value)
-
         return json.dumps(page_info_header)
 
     @staticmethod
@@ -65,7 +64,6 @@ class BaseClient:
         # Throw exception if we get anything other than the expected success http status code (200)
         if result.status_code == 200:
             result = return_cls.from_dict(result.json())
-
             # 0000 = Success, 0001 = No Results Found
             if result.headers.response_code == '0000':     
                 return result
