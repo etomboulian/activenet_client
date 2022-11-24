@@ -3,6 +3,7 @@ from hashlib import sha256
 from .routes import routes
 from .models.base import Root
 from typing import Tuple
+from .data import PageInfo, SortInfo
 
 USA_API_BASE = "https://api.amp.active.com/anet-systemapi-sec/"
 CAN_API_BASE = "https://api.amp.active.com/anet-systemapi-sec/"
@@ -61,12 +62,21 @@ class BaseClient:
 
     # Check to see if the given sort option is valid for the api endpoint
     def validate_sort_params(self, route: str, sort_params: dict) -> bool:
-        pass
+        return True
 
     # Generates the page info header for pagination and sorting
     @staticmethod
-    def set_page_info_header(page_info: dict) -> str:
-        page_info_header = {header:str(value) for (header, value) in page_info.items()}
+    def set_page_info_header(page_info: PageInfo, sort_by: SortInfo) -> str:
+        page_info_header = {}
+
+        if page_info:
+            page_info_header.setdefault('page_number', str(page_info.page_number))
+            page_info_header.setdefault('total_records_per_page', str(page_info.total_records_per_page))
+            
+        if sort_by:
+            page_info_header.setdefault('order_by', str(sort_by.order_by))
+            page_info_header.setdefault('order_option', str(sort_by.order_option))
+
         return json.dumps(page_info_header)
 
     # Check the response to ensure that we are getting a success response
@@ -91,7 +101,7 @@ class BaseClient:
         return return_cls.from_dict(data.json())
 
     # Gets data from the endpoint and returns a constructed model class for the response
-    def get(self, api_name, filters: dict=None, sort: dict=None, page_info=None) -> 'Root':
+    def get(self, api_name, filters: dict=None, sort_by: dict=None, page_info=None) -> 'Root':
         url, return_cls = self.find_route_info(api_name)
         http_headers = {
             'Accept': 'application/json',
@@ -106,15 +116,18 @@ class BaseClient:
             except Exception as e:
                 raise e
 
-        if sort:
-            try:
-                if self.validate_sort_params(api_name, sort):
-                    http_headers.update(sort)
-            except Exception as e:
-                raise e
+        # if sort_by:
+        #     try:
+        #         if self.validate_sort_params(api_name, sort_by):
+        #             http_headers['page_info'] = json.dumps({
+        #                 'order_option': sort_by[0],
+        #                 'order_by': sort_by[1]
+        #                 })
+        #     except Exception as e:
+        #         raise e
 
-        if page_info:
-            http_headers['page_info'] = self.set_page_info_header(page_info)
+        if page_info or sort_by:
+            http_headers['page_info'] = self.set_page_info_header(page_info, sort_by)
 
         params['api_key'] = self.api_key
         params['sig'] = self.generate_signature()
@@ -124,8 +137,12 @@ class BaseClient:
             time.sleep(abs(REQUESTS_PER_SECOND - diff))
         
         resp = self.session.get(url, headers=http_headers, params=params)
+
+        # print(resp.request.url)
+        # print(resp.request.headers)
+
         self.last_request = time.time()
-        
+
         try:
             result = self.check_response(return_cls, resp)
         except Exception as e:

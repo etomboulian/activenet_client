@@ -1,7 +1,7 @@
 from .base_client import BaseClient
 from typing import List, Tuple
 from .models import *
-from .data import SinglePageResult, PaginatedResult
+from .data import SinglePageResult, PaginatedResult, SortInfo
 
 class ApiClient(BaseClient):
     def __init__(self, org_name, country, api_key, shared_secret):
@@ -40,18 +40,21 @@ class ApiClient(BaseClient):
         """
         return self.get('skills')
     
-    def GetSkipDates(self, facility_id: int, filters: dict = {}, sort_by: Tuple[str, str] = None) -> 'PaginatedResult':
+    def GetSkipDates(self, facility_id: int, sort_by: Tuple[str, str] = None) -> 'PaginatedResult':
         """GetSkipDates API doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSkipDates
         param: facility_id: int, required - The facility id of the facility.
         param: sort_by: Tuple[str, str] - The primary sort option for results, example - ('start_date', 'ASC')
         returns: List[SkipDates] - A list of skip dates
         """
         route = 'skip_dates'
+        filters = {}
         filters['facility_id'] = facility_id
-        
-        first_page = self.get(route, filters=filters, sort=sort_by)
-        
-        return PaginatedResult(self, route, first_page, filters=filters, sort=sort_by) if first_page else first_page
+
+        if sort_by:
+            sort_by = SortInfo(sort_by[0], sort_by[1])
+
+        first_page = self.get(route, filters=filters, sort_by=sort_by)
+        return PaginatedResult(self, route, first_page, filters=filters, sort_by=sort_by) if first_page else first_page
     
     def GetSeasons(self) -> List[Season]:
         """GetSeasons API doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSeasons
@@ -60,15 +63,18 @@ class ApiClient(BaseClient):
         """
         return self.get('seasons').body
     
-    def GetActivities(self, options: dict = None, sort_by: dict = None) -> 'PaginatedResult':
+    def GetActivities(self, optional_filters: dict = None, sort_by: dict = None) -> 'PaginatedResult':
         """GetActivities API
         doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetActivities
         Returns: List[Activity] - a list of activity records
         """
         route = 'activities'
-        first_page = self.get('activities', filters=options)
-        return PaginatedResult(self, route, first_page, filters=options) if first_page else first_page
+        first_page = self.get('activities', filters=optional_filters, sort_by=sort_by)
+        return PaginatedResult(
+            self, 
+            route, 
+            first_page, 
+            filters=optional_filters, 
+            sort_by=sort_by
+            ) if first_page else first_page
 
-
-
-    
