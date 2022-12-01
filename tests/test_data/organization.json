@@ -1,0 +1,17 @@
+{
+    "headers": {
+        "response_code": "0000",
+        "response_message": "Successful"
+    },
+    "body": [
+        {
+            "organization_id": 1099,
+            "name": "City of Vancouver",
+            "time_zone": "US/Mountain",
+            "logo_on_member_app": "",
+            "country": "United States of America",
+            "retired": "N",
+            "cui_url": "http://apm.activecommunities.com/ljsupport12/Home"
+        }
+    ]
+}

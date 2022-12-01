@@ -1,0 +1,557 @@
+{
+    "headers": {
+        "response_code": "0000",
+        "response_message": "Successful"
+    },
+    "body": [
+        {
+            "center_id": 8,
+            "center_name": "Bonsor Recreation Complex",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "",
+            "customer_webpage_url": "",
+            "address1": "7550 E Adobe Rd",
+            "address2": "",
+            "city": "Mesa",
+            "state": "AZ",
+            "zip_code": "85207",
+            "country": "US",
+            "phone1": "6042974597",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "19:00:00"
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "19:00:00"
+            }
+        },
+        {
+            "center_id": 7,
+            "center_name": "Center 3",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "Multi purpose",
+            "customer_webpage_url": "",
+            "address1": "7550 E Adobe Rd",
+            "address2": "",
+            "city": "Mesa",
+            "state": "AZ",
+            "zip_code": "85207",
+            "country": "US",
+            "phone1": "",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": null,
+                "closes": null
+            }
+        },
+        {
+            "center_id": 10,
+            "center_name": "Edmonds Community Centre",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "",
+            "customer_webpage_url": "",
+            "address1": "7433 Edmonds Street",
+            "address2": "",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip_code": "V2J 8H7",
+            "country": "CA",
+            "phone1": "",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            }
+        },
+        {
+            "center_id": 9,
+            "center_name": "Eileen Dailly",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "",
+            "customer_webpage_url": "",
+            "address1": "240 Willingdon Avenue",
+            "address2": "",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip_code": "V2J 8H7",
+            "country": "US",
+            "phone1": "",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "21:00:00"
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "21:00:00"
+            }
+        },
+        {
+            "center_id": 2,
+            "center_name": "Kitsilano Arena",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "49.1925",
+            "longitude": "-123.1751",
+            "description": "2 Ice Rinks in this Facility",
+            "customer_webpage_url": "",
+            "address1": "12 Hastings St",
+            "address2": "",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip_code": "V4D 5A6",
+            "country": "US",
+            "phone1": "6047855645",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "06:00:00",
+                "closes": "18:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "06:00:00",
+                "closes": "18:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "06:00:00",
+                "closes": "18:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "06:00:00",
+                "closes": "18:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "06:00:00",
+                "closes": "18:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": true,
+                "opens": null,
+                "closes": null
+            }
+        },
+        {
+            "center_id": 6,
+            "center_name": "Langley Events Centre",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "Large Multi-purpose facility",
+            "customer_webpage_url": "",
+            "address1": "7995 200 st",
+            "address2": "",
+            "city": "Langley",
+            "state": "BC",
+            "zip_code": "V2J 8H7",
+            "country": "US",
+            "phone1": "6045333335",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "20:00:00"
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "20:00:00"
+            }
+        },
+        {
+            "center_id": 5,
+            "center_name": "New Rec Complex",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "",
+            "customer_webpage_url": "",
+            "address1": "1500 Main Street",
+            "address2": "",
+            "city": "Stafford",
+            "state": "VA",
+            "zip_code": "22405",
+            "country": "US",
+            "phone1": "5405551212",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "21:00:00"
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "07:00:00",
+                "closes": "22:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "21:00:00"
+            }
+        },
+        {
+            "center_id": 3,
+            "center_name": "Outdoor Pool",
+            "prevent_further_use": false,
+            "site_id": 2,
+            "site_name": "Organization",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "An outdoor pool",
+            "customer_webpage_url": "",
+            "address1": "1 Water Street",
+            "address2": "",
+            "city": "Fredericksburg",
+            "state": "VA",
+            "zip_code": "22405",
+            "country": "US",
+            "phone1": "",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "19:00:00"
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "19:00:00"
+            }
+        },
+        {
+            "center_id": 4,
+            "center_name": "Park Place School",
+            "prevent_further_use": false,
+            "site_id": 1,
+            "site_name": "Organization Online",
+            "show_on_member_app": "N",
+            "member_app_image": "",
+            "latitude": "0.00",
+            "longitude": "0.00",
+            "description": "",
+            "customer_webpage_url": "",
+            "address1": "2 Water Street",
+            "address2": "",
+            "city": "Fredericksburg",
+            "state": "VA",
+            "zip_code": "22405",
+            "country": "US",
+            "phone1": "5403721212",
+            "phone2": "",
+            "fax": "",
+            "default_hours_of_operation": {
+                "default_opens": null,
+                "default_closes": null
+            },
+            "Sunday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "20:00:00"
+            },
+            "Monday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Tuesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Wednesday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Thursday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Friday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "09:00:00",
+                "closes": "22:00:00"
+            },
+            "Saturday_hours_of_operation": {
+                "closed_all_day": false,
+                "opens": "10:00:00",
+                "closes": "21:00:00"
+            }
+        }
+    ]
+}

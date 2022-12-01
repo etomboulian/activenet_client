@@ -14,12 +14,5 @@ client = ApiClient(
     environ.get('API_SECRET')
 )
 
-activities = client.GetActivities()
-
-while (next := activities.next()):
-    pass
-
-
-
-
-
+print(client.GetOrganization())
+#print(client.GetSkipDates(10))

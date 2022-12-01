@@ -1,0 +1,56 @@
+{
+    "headers": {
+        "response_code": "0000",
+        "response_message": "Successful"
+    },
+    "body": [
+        {
+            "site_id": 2,
+            "site_name": "Organization",
+            "address1": "Street Address",
+            "address2": "",
+            "city": "City",
+            "state": "CA",
+            "zip_code": "11111",
+            "country": "US",
+            "geographic_area": null,
+            "email_address": ""
+        },
+        {
+            "site_id": 1,
+            "site_name": "Organization Online",
+            "address1": "Street Address",
+            "address2": "",
+            "city": "City",
+            "state": "CA",
+            "zip_code": "11111",
+            "country": "US",
+            "geographic_area": null,
+            "email_address": ""
+        },
+        {
+            "site_id": 3,
+            "site_name": "Other Site",
+            "address1": "13733 107A Ave",
+            "address2": "",
+            "city": "Surrey",
+            "state": "BC",
+            "zip_code": "V3T 0B7",
+            "country": "CA",
+            "geographic_area": null,
+            "email_address": "etomboulian@gmail.com"
+        },
+        {
+            "site_id": 4,
+            "site_name": "Test Site",
+            "address1": "111",
+            "address2": "",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip_code": "V2J 8H7",
+            "country": "US",
+            "geographic_area": null,
+            "email_address": ""
+        }
+    ]
+}

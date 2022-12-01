@@ -1,0 +1,40 @@
+{
+    "headers": {
+        "response_code": "0000",
+        "response_message": "Successful",
+        "page_info": {
+            "order_by": "start_date",
+            "total_records": 3,
+            "total_records_per_page": 50,
+            "total_page": 1,
+            "page_number": 1,
+            "order_option": "ASC"
+        }
+    },
+    "body": [
+        {
+            "skip_date_description": "New Year's Day",
+            "skip_every_year": true,
+            "date_from": "2010-01-01",
+            "time_from": null,
+            "date_to": "2010-01-02",
+            "time_to": null
+        },
+        {
+            "skip_date_description": "Christmas Day",
+            "skip_every_year": true,
+            "date_from": "2010-12-25",
+            "time_from": null,
+            "date_to": "2010-12-26",
+            "time_to": null
+        },
+        {
+            "skip_date_description": "asd",
+            "skip_every_year": false,
+            "date_from": "2013-10-14",
+            "time_from": null,
+            "date_to": "2013-10-31",
+            "time_to": null
+        }
+    ]
+}

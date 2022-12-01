@@ -1,4 +1,5 @@
-import requests, time, json, os
+import requests, time, json
+from requests.adapters import HTTPAdapter, Retry
 from hashlib import sha256
 from .routes import routes
 from .models.base import Root
@@ -8,10 +9,7 @@ from .data import PageInfo, SortInfo
 USA_API_BASE = "https://api.amp.active.com/anet-systemapi-sec/"
 CAN_API_BASE = "https://api.amp.active.com/anet-systemapi-sec/"
 
-REQUESTS_PER_SECOND = 0.5
-
 class BaseClient:
-    last_request = time.time()
     def __init__(self, org_name, country, api_key, shared_secret):
         if country == 'USA':
             API_BASE = USA_API_BASE
@@ -26,7 +24,9 @@ class BaseClient:
         self.api_base =  f"{API_BASE}/{org_name}/api/v1/"
         self.routes = routes
         self.session = requests.Session()
-        
+        retries = Retry(total=5, backoff_factor=0.25, status_forcelist=(403, 500, 502, 503, 504))
+        self.session.mount('https://', HTTPAdapter(max_retries=retries))
+
     def __del__(self):
         self.session.close()
 
@@ -101,47 +101,41 @@ class BaseClient:
         return return_cls.from_dict(data.json())
 
     # Gets data from the endpoint and returns a constructed model class for the response
-    def get(self, api_name, filters: dict=None, sort_by: dict=None, page_info=None) -> 'Root':
+    def get(self, api_name, filters: dict=None, sort_by: SortInfo=None, page_info=None, **kwargs) -> 'Root':
         url, return_cls = self.find_route_info(api_name)
+        
         http_headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
             }
-        params = dict()
+
+        params = {
+            'api_key': self.api_key,
+            'sig': self.generate_signature()
+        }
     
         if filters:
-            try:
-                if self.validate_route_params(api_name, filters):
-                    params.update(filters)                
-            except Exception as e:
-                raise e
+            if self.validate_route_params(api_name, filters):
+                params.update(filters)                
+            else:
+                raise Exception("Filter Validation Failed")
 
-        # if sort_by:
-        #     try:
-        #         if self.validate_sort_params(api_name, sort_by):
-        #             http_headers['page_info'] = json.dumps({
-        #                 'order_option': sort_by[0],
-        #                 'order_by': sort_by[1]
-        #                 })
-        #     except Exception as e:
-        #         raise e
+        if sort_by:
+            if self.validate_sort_params(api_name, sort_by):
+                http_headers['page_info'] = json.dumps({
+                    'order_option': sort_by.order_option,
+                    'order_by': sort_by.order_by
+                    })
+            else:
+                raise Exception("Sort Option Validation Failed")
 
         if page_info or sort_by:
             http_headers['page_info'] = self.set_page_info_header(page_info, sort_by)
-
-        params['api_key'] = self.api_key
-        params['sig'] = self.generate_signature()
-
-        # Pause if requests are being made too quickly
-        while ((diff := (time.time() - self.last_request)) < REQUESTS_PER_SECOND):
-            time.sleep(abs(REQUESTS_PER_SECOND - diff))
         
         resp = self.session.get(url, headers=http_headers, params=params)
 
-        # print(resp.request.url)
-        # print(resp.request.headers)
-
-        self.last_request = time.time()
+        if kwargs.get('print_url', None):
+            print(resp.request.url)
 
         try:
             result = self.check_response(return_cls, resp)

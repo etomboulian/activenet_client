@@ -1,5 +1,5 @@
 from . import ClientTestCase
-from client.models import SkipDate
+from client.models import SkipDate, SkipDatesResponse
 from client.api_client import PaginatedResult
 
 
@@ -7,6 +7,7 @@ class TestSkipDates(ClientTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.skipdates_data = self.client.GetSkipDates(10)
+        self.mock_skipdates_data = self.get_mock_skip_dates_data()
 
     def test_skipdates_api_success(self):
         self.assertEqual(self.skipdates_data.headers.response_code, '0000')
@@ -22,4 +23,7 @@ class TestSkipDates(ClientTestCase):
 
     def test_skipdates_api_data_with_filter(self):
         data = self.client.GetSkipDates(10, sort_by=('start_date', 'DESC'))
+
+    def test_skipdates_with_data(self):
+        self.assertIsInstance(self.mock_skipdates_data, SkipDatesResponse)
         

@@ -19,12 +19,12 @@ class ApiClient(BaseClient):
         """
         return self.get('organization').body[0]
     
-    def GetSites(self) -> List[Site]:
+    def GetSites(self, **kwargs) -> List[Site]:
         """GetSites API doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetSites
         Params: None
         Returns: List[Site] - a list of site records
         """
-        return self.get('sites').body
+        return self.get('sites')
     
     def GetCenters(self, options: dict = None) -> List[Center]:
         """GetCenters API doc link: https://help.aw.active.com/ActiveNet/22.13/en_US/api_specification.htm#GetCenters

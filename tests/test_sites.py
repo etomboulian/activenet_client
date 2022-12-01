@@ -5,6 +5,7 @@ class TestSites(ClientTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.sites_data = self.client.get('sites')
+        self.mock_sites_data = self.get_mock_sites_data()
 
     def test_sites_api_success(self):
         response_code = self.sites_data.headers.response_code
@@ -21,4 +22,6 @@ class TestSites(ClientTestCase):
     def test_sites_api_return_type_single(self):
         data = self.sites_data.body[0]
         self.assertIsInstance(data, Site)
-        
+
+    def test_sites_with_test_data(self):
+        self.assertIsInstance(self.mock_sites_data, SitesResponse)

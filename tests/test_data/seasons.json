@@ -1,0 +1,189 @@
+{
+    "headers": {
+        "response_code": "0000",
+        "response_message": "Successful"
+    },
+    "body": [
+        {
+            "season_id": 10,
+            "season_name": "2021",
+            "child_season": [],
+            "start_date": "2021-01-01",
+            "end_date": "2021-12-31",
+            "site_id": null,
+            "prevent_further_use": false,
+            "first_date_in_person": null,
+            "first_date_in_person_non_residents": null,
+            "first_date_in_person_members": null,
+            "last_date_in_person": null,
+            "first_date_on_internet": null,
+            "first_date_on_internet_non_residents": null,
+            "first_date_on_internet_members": null,
+            "last_date_on_internet": null
+        },
+        {
+            "season_id": 9,
+            "season_name": "Daves test term",
+            "child_season": [],
+            "start_date": "2016-06-01",
+            "end_date": "2016-07-31",
+            "site_id": null,
+            "prevent_further_use": false,
+            "first_date_in_person": "2016-05-30 00:00:00",
+            "first_date_in_person_non_residents": null,
+            "first_date_in_person_members": null,
+            "last_date_in_person": null,
+            "first_date_on_internet": "2016-05-30 00:00:00",
+            "first_date_on_internet_non_residents": null,
+            "first_date_on_internet_members": null,
+            "last_date_on_internet": null
+        },
+        {
+            "season_id": 7,
+            "season_name": "Fall",
+            "child_season": [
+                {
+                    "child_season_id": 5,
+                    "child_season": "2013",
+                    "start_date": "2013-10-01",
+                    "end_date": "2013-12-31",
+                    "prevent_further_use": false,
+                    "first_date_in_person": "2013-09-01 00:00:00",
+                    "first_date_in_person_non_residents": "2013-09-08 00:00:00",
+                    "first_date_in_person_members": "2013-09-01 00:00:00",
+                    "last_date_in_person": null,
+                    "first_date_on_internet": "2013-09-01 00:00:00",
+                    "first_date_on_internet_non_residents": "2013-09-08 00:00:00",
+                    "first_date_on_internet_members": "2013-09-01 00:00:00",
+                    "last_date_on_internet": null
+                }
+            ],
+            "start_date": "2013-10-01",
+            "end_date": "2013-12-31",
+            "site_id": null,
+            "prevent_further_use": false,
+            "first_date_in_person": "2013-09-01 00:00:00",
+            "first_date_in_person_non_residents": "2013-09-15 00:00:00",
+            "first_date_in_person_members": "2013-09-01 00:00:00",
+            "last_date_in_person": null,
+            "first_date_on_internet": null,
+            "first_date_on_internet_non_residents": null,
+            "first_date_on_internet_members": null,
+            "last_date_on_internet": "2014-11-08 23:59:59"
+        },
+        {
+            "season_id": 5,
+            "season_name": "Spring",
+            "child_season": [
+                {
+                    "child_season_id": 1,
+                    "child_season": "2013",
+                    "start_date": "2013-04-01",
+                    "end_date": "2013-06-30",
+                    "prevent_further_use": false,
+                    "first_date_in_person": "2013-03-10 00:00:00",
+                    "first_date_in_person_non_residents": "2013-03-26 00:00:00",
+                    "first_date_in_person_members": "2013-03-10 00:00:00",
+                    "last_date_in_person": null,
+                    "first_date_on_internet": "2013-03-10 00:00:00",
+                    "first_date_on_internet_non_residents": "2013-03-26 00:00:00",
+                    "first_date_on_internet_members": "2013-03-10 00:00:00",
+                    "last_date_on_internet": null
+                }
+            ],
+            "start_date": "2013-04-01",
+            "end_date": "2013-06-30",
+            "site_id": null,
+            "prevent_further_use": false,
+            "first_date_in_person": null,
+            "first_date_in_person_non_residents": null,
+            "first_date_in_person_members": null,
+            "last_date_in_person": null,
+            "first_date_on_internet": null,
+            "first_date_on_internet_non_residents": null,
+            "first_date_on_internet_members": null,
+            "last_date_on_internet": null
+        },
+        {
+            "season_id": 6,
+            "season_name": "Summer",
+            "child_season": [
+                {
+                    "child_season_id": 4,
+                    "child_season": "2013",
+                    "start_date": "2013-07-01",
+                    "end_date": "2013-09-30",
+                    "prevent_further_use": false,
+                    "first_date_in_person": "2013-08-01 00:00:00",
+                    "first_date_in_person_non_residents": "2013-08-08 00:00:00",
+                    "first_date_in_person_members": "2013-08-01 00:00:00",
+                    "last_date_in_person": null,
+                    "first_date_on_internet": "2013-08-01 00:00:00",
+                    "first_date_on_internet_non_residents": "2013-08-08 00:00:00",
+                    "first_date_on_internet_members": "2013-08-01 00:00:00",
+                    "last_date_on_internet": null
+                }
+            ],
+            "start_date": "2013-07-01",
+            "end_date": "2013-09-30",
+            "site_id": null,
+            "prevent_further_use": false,
+            "first_date_in_person": null,
+            "first_date_in_person_non_residents": null,
+            "first_date_in_person_members": null,
+            "last_date_in_person": null,
+            "first_date_on_internet": null,
+            "first_date_on_internet_non_residents": null,
+            "first_date_on_internet_members": null,
+            "last_date_on_internet": null
+        },
+        {
+            "season_id": 8,
+            "season_name": "Winter",
+            "child_season": [
+                {
+                    "child_season_id": 2,
+                    "child_season": "2013",
+                    "start_date": "2013-01-01",
+                    "end_date": "2013-03-31",
+                    "prevent_further_use": false,
+                    "first_date_in_person": null,
+                    "first_date_in_person_non_residents": null,
+                    "first_date_in_person_members": null,
+                    "last_date_in_person": null,
+                    "first_date_on_internet": null,
+                    "first_date_on_internet_non_residents": null,
+                    "first_date_on_internet_members": null,
+                    "last_date_on_internet": null
+                },
+                {
+                    "child_season_id": 3,
+                    "child_season": "2014",
+                    "start_date": "2014-01-01",
+                    "end_date": "2014-03-31",
+                    "prevent_further_use": false,
+                    "first_date_in_person": "2013-12-02 00:00:00",
+                    "first_date_in_person_non_residents": "2013-12-09 00:00:00",
+                    "first_date_in_person_members": "2013-12-02 00:00:00",
+                    "last_date_in_person": null,
+                    "first_date_on_internet": "2013-12-02 00:00:00",
+                    "first_date_on_internet_non_residents": "2013-12-09 00:00:00",
+                    "first_date_on_internet_members": "2013-12-02 00:00:00",
+                    "last_date_on_internet": null
+                }
+            ],
+            "start_date": "2013-01-01",
+            "end_date": "2013-03-31",
+            "site_id": null,
+            "prevent_further_use": false,
+            "first_date_in_person": null,
+            "first_date_in_person_non_residents": null,
+            "first_date_in_person_members": null,
+            "last_date_in_person": null,
+            "first_date_on_internet": null,
+            "first_date_on_internet_non_residents": null,
+            "first_date_on_internet_members": null,
+            "last_date_on_internet": null
+        }
+    ]
+}
